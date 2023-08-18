@@ -35,4 +35,4 @@ Please read the source code carefully before using this project's code to ensure
 
 This project does not provide any guarantees regarding usability, security, or legality.
 
-**I am not responsible for bricked machines,thermonuclear war, or the current economic crisis caused by you following these directions. YOU are choosing to make these modifications, and ifyou point your finger at me for messing up your device or projext, I will LMAO at you.**  
+**I am not responsible for bricked machines,thermonuclear war, or the current economic crisis caused by you following these directions. YOU are choosing to make these modifications, and if you point your finger at me for messing up your project or OS or device, I will LMAO at you.**  
