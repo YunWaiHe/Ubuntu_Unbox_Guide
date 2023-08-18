@@ -568,7 +568,14 @@ wget --no-verbose -O - https://raw.githubusercontent.com/AdguardTeam/AdGuardHome
 #8.8.4.4
 ```
 
+## EasyConnect
 
+```shell
+chmod +x install_EasyConnect_Ubuntu22.04_x64.sh
+./install_EasyConnect_Ubuntu22.04_x64.sh
+# 显示用户协议提示勾选即为安装成功
+# 若显示版本过高，尝试将install_EasyConnect_Ubuntu22.04_x64.sh中下载链接改为https://download.sangfor.com.cn/download/product/sslvpn/pkg/linux_01/EasyConnect_x64.deb
+```
 
 ## v2raya(代理)
 
