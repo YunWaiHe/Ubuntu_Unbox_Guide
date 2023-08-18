@@ -1,9 +1,9 @@
 # Ubuntu_Unbox_Guide
-Ubuntu 开箱设置
+Ubuntu 开箱设置  
 Ubuntu unbox settings
 
 ## [ubuntu设置文档](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/ubuntu2204_unbox_settings.md)
-ubuntu22.04设置，其他版本酌情修改
+ubuntu22.04设置，其他版本酌情修改  
 This doc is intended for Ubuntu 22.04 version only. If you are using a different version, please modify it accordingly.
 
 ## [EasyConnect安装](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/install_EasyConnect_Ubuntu22.04_x64.sh)
@@ -18,12 +18,12 @@ This doc is intended for Ubuntu 22.04 version only. If you are using a different
 自用，可参照下方编写指南进行简单定制
 
 ## [ZSH主题Prompt编写指南](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/ZSH_THEME_PROMPT_%E6%8C%87%E5%8D%97.md)
-非常简陋的版本
+非常简陋的版本  
 a very simple version
 
 
 # 无协议
-**None License**
+**None License**  
 没有协议限制，可用于任何合法用途
 
 # 注意
@@ -35,4 +35,4 @@ Please read the source code carefully before using this project's code to ensure
 
 This project does not provide any guarantees regarding usability, security, or legality.
 
-**I am not responsible for bricked machines,thermonuclear war, or the current economic crisis caused by you following these directions. YOU are choosing to make these modifications, and ifyou point your finger at me for messing up your device or projext, I will LMAO at you.**
+**I am not responsible for bricked machines,thermonuclear war, or the current economic crisis caused by you following these directions. YOU are choosing to make these modifications, and ifyou point your finger at me for messing up your device or projext, I will LMAO at you.**  
