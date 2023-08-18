@@ -27,11 +27,11 @@ a very simple version
 没有协议限制，可用于任何合法用途
 
 # 注意
-**使用本项目代码前请仔细阅读源码，确保不会产生副作用。**
+**使用本项目代码前请仔细阅读源码，确保不会产生副作用。**  
 
 Please read the source code carefully before using this project's code to ensure that no side effects will occur!!!
 
-**本项目不做任何关于可用性、安全性、合法性的保证。**
+**本项目不做任何关于可用性、安全性、合法性的保证。**  
 
 This project does not provide any guarantees regarding usability, security, or legality.
 
