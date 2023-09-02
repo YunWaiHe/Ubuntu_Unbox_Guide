@@ -677,7 +677,7 @@ sudo apt update
 
 ```shell
 # 固定版本，以及禁止从ubuntu源安装cuda。
-sudo cat <<EOF | sudo tee /etc/apt/preference.d/cuda-pin
+sudo cat <<EOF | sudo tee /etc/apt/preferences.d/cuda-pin
 Package: nsight-compute
 Pin: origin *huaweicloud.com*
 Pin-Priority: -1
@@ -703,6 +703,10 @@ Pin: release l=NVIDIA CUDA
 Pin-Priority: 600
 
 Package: cuda
+Pin: version 11.8.*
+Pin-Priority: 1001
+
+Package: cuda-toolkit-config-common
 Pin: version 11.8.*
 Pin-Priority: 1001
 
