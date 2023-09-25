@@ -861,3 +861,19 @@ sudo dpkg -i debfilename
 sudo amdgpu-install
 ```
 
+==如果要安装新版本，先使用amdgpu-uninstall卸载旧驱动，再使用amdgpu-install 安装新驱动==
+
+使用下列命令消除unattended-upgrade消息
+
+```bash
+sudo cat <<EOF | sudo tee /etc/apt/preferences.d/repo-radeon-pin-600
+Package: rocminfo
+Pin: origin *huaweicloud.com*
+Pin-Priority: -1
+
+Package: *
+Pin: release o=repo.radeon.com
+Pin-Priority: 600
+EOF
+```
+
