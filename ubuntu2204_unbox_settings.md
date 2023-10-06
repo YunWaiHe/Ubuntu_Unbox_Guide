@@ -602,6 +602,20 @@ sed -i 's/dlc.dat/geosite.dat/g' install-Loyalsoldier-dat-release.sh
 sed -i '/dir_tmp="$(mktemp -d)"/a\\nexport http_proxy=http://127.0.0.1:10809\nexport https_proxy=http://127.0.0.1:10809\n' install-Loyalsoldier-dat-release.sh
 # 更新dat文件
 sudo ./install-Loyalsoldier-dat-release.sh
+sudo systemctl disable v2ray.service
+
+# 安装xray-core  vless reality
+cd ~/projects
+wget https://github.com/XTLS/Xray-install/raw/main/install-release.sh
+mv install-release.sh install-xtls-release.sh
+sed -i 's#https://github.com/v2fly/geoip/releases/latest/download/geoip.dat#https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geoip.dat#g' install-xtls-release.sh
+sed -i 's#https://github.com/v2fly/domain-list-community/releases/latest/download/dlc.dat#https://github.com/Loyalsoldier/v2ray-rules-dat/releases/latest/download/geosite.dat#g' install-xtls-release.sh
+sed -i 's/dlc.dat/geosite.dat/g' install-xtls-release.sh
+
+sudo chmod +x install-xtls-release.sh
+sudo ./install-xtls-release.sh install -u root > xtls-install.log
+sudo ./install-xtls-release.sh install-geodata
+sudo systemctl disable xray.service
 
 # 安装v2raya
 wget -qO - https://apt.v2raya.org/key/public-key.asc | sudo tee /etc/apt/trusted.gpg.d/v2raya.asc
