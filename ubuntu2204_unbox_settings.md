@@ -692,46 +692,32 @@ sudo apt update
 ```shell
 # 固定版本，以及禁止从ubuntu源安装cuda。
 sudo cat <<EOF | sudo tee /etc/apt/preferences.d/cuda-pin
-Package: nsight-compute
+# disable nvidia software from huaweiorigin
+Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
 Pin: origin *huaweicloud.com*
 Pin-Priority: -1
 
-Package: nsight-systems
-Pin: origin *huaweicloud.com*
-Pin-Priority: -1
-
-Package: nvidia-cuda-toolkit
-Pin: origin *huaweicloud.com*
-Pin-Priority: -1
-
-Package: nvidia-profiler
-Pin: origin *huaweicloud.com*
-Pin-Priority: -1
-
-Package: nvidia-visual-profiler
-Pin: origin *huaweicloud.com*
-Pin-Priority: -1
-
+# set label:NVIDIA CUDA with high priority
 Package: *
 Pin: release l=NVIDIA CUDA
 Pin-Priority: 600
 
-Package: cuda
+# pin cuda's version to 11.8.*
+Package: cuda cuda-toolkit-config-common
 Pin: version 11.8.*
 Pin-Priority: 1001
 
-Package: cuda-toolkit-config-common
-Pin: version 11.8.*
-Pin-Priority: 1001
-
+# pin tensorrt's version to cuda11.8
 Package: tensorrt*
 Pin: version *+cuda11.8
 Pin-Priority: 1001
 
+# pin cudnn's version to 8.6.*-cuda11.8
 Package: libcudnn8 libcudnn8-dev libnvinfer* libnvonnxparsers* libnvparsers*
 Pin: version 8.6.*+cuda11.8
 Pin-Priority: 1001
 
+# pin cudnn samples' version
 Package: libcudnn8-samples
 Pin: version *+cuda11.8
 Pin-Priority: 1001
