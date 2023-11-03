@@ -287,7 +287,7 @@ EOF
 # root用户
 sudo su
 cat <<'EOF' | tee $ZSH_CUSTOM/themes/my_maran.zsh-theme
-PROMPT='%{$fg_bold[white]$bg[red]%}%n%{%f%k%}@%{$fg[blue]%}%M:%{$fg[magenta]%}%~ $(git_prompt_info)$(git_prompt_status)%{%f%u%}%(?,,%{$fg[red]%})#%(?,,{%f%b%}) '
+PROMPT='%{$fg_bold[white]$bg[red]%}%n%{%f%k%}@%{$fg[blue]%}%M:%{$fg[magenta]%}%~ $(git_prompt_info)$(git_prompt_status)%{%f%u%}%(?,,%{$fg[red]%})#%(?,,%{%f%b%}) '
 RPROMPT='%{$fg[cyan]%}%*%{$fg[default]%}'
 
 ZSH_THEME_GIT_PROMPT_PREFIX="%{$fg[blue]%}["
