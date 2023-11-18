@@ -353,6 +353,16 @@ echo "set shiftwidth=4" | sudo tee -a /etc/vim/vimrc
 echo "set expandtab" | sudo tee -a /etc/vim/vimrc
 ```
 
+## Zerotier
+
+```shell
+# 关闭ipv6
+sudo nmcli c show ztoname
+sudo nmcli c modify ztoname ipv6.method disabled
+sudo nmcli c up ztoname
+sudo systemctl restart NetworkManager
+```
+
 ## 无用软件移除( ==! 慎重 !== )
 
 ```shell
