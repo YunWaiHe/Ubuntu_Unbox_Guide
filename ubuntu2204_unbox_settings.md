@@ -370,17 +370,6 @@ sudo systemctl restart NetworkManager
 sudo apt purge network-manager-pptp network-manager-openvpn usb-creator-* transmission* thunderbird*  simple-scan gnome-mahjongg gnome-sudoku* aisleriot*
 ```
 
-## git 配置
-
-```shell
-sudo apt install seahorse libsecret-1-0 libsecret-1-dev libsecret-tools
-
-cd /usr/share/doc/git/contrib/credential/libsecret
-sudo make
-
-git config --global credential.helper /usr/share/doc/git/contrib/credential/libsecret/git-credential-libsecret
-```
-
 # 日用软件安装
 
 ## Typora
