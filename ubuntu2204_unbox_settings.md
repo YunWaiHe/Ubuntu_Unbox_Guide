@@ -5,15 +5,22 @@
 ```shell
 deb https://repo.huaweicloud.com/ubuntu/ jammy main restricted universe multiverse
 deb-src https://repo.huaweicloud.com/ubuntu/ jammy main restricted universe multiverse
-
 deb https://repo.huaweicloud.com/ubuntu/ jammy-updates main restricted universe multiverse
 deb-src https://repo.huaweicloud.com/ubuntu/ jammy-updates main restricted universe multiverse
-
 deb https://repo.huaweicloud.com/ubuntu/ jammy-backports main restricted universe multiverse
 deb-src https://repo.huaweicloud.com/ubuntu/ jammy-backports main restricted universe multiverse
-
 deb https://repo.huaweicloud.com/ubuntu/ jammy-security main restricted universe multiverse
 deb-src https://repo.huaweicloud.com/ubuntu/ jammy-security main restricted universe multiverse
+
+# 校园网用户
+deb https://mirrors.bfsu.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb-src https://mirrors.bfsu.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb https://mirrors.bfsu.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb-src https://mirrors.bfsu.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb https://mirrors.bfsu.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb-src https://mirrors.bfsu.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb https://mirrors.bfsu.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+deb-src https://mirrors.bfsu.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
 ```
 
 ## linux内核
@@ -715,7 +722,7 @@ geosite中可用规则 https://github.com/v2fly/domain-list-community/tree/maste
 
 如果没有AGH可以配置，DNS查询走代理需要确认proxy提供商是否屏蔽DNS请求
 
-# CUDA
+# CUDA 11.8
 
 https://docs.nvidia.com/cuda/archive/11.8.0/cuda-installation-guide-linux/index.html#ubuntu-installation
 
@@ -735,6 +742,10 @@ sudo cat <<EOF | sudo tee /etc/apt/preferences.d/cuda-pin
 # disable nvidia software from huaweiorigin
 Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
 Pin: origin *huaweicloud.com*
+Pin-Priority: -1
+
+Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
+Pin: origin *edu.cn*
 Pin-Priority: -1
 
 # set label:NVIDIA CUDA with high priority
@@ -892,7 +903,29 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 # AMD核显驱动
 
-**可以装但没必要，目前支持不完善，等22.04.3再看看支持程度如何**
+**可以装但没必要~~，目前支持不完善，等22.04.3再看看支持程度如何~~**
+
+## 2024.01.15 临时解决
+
+ 22.04.3 HWE 6.5.0-14内核下，
+
+使用官网https://repo.radeon.com/amdgpu-install/23.30.2/ubuntu/jammy/amdgpu-install_5.7.50702-1_all.deb安装失败，
+
+换用https://repo.radeon.com/amdgpu-install/latest/ubuntu/jammy/amdgpu-install_6.0.60000-1_all.deb，
+
+```shell
+sudo apt purge amdgpu-core amdgpu-dkms amdgpu-dkms-firmware amdgpu-lib amdgpu-lib32
+sudo amdgpu-uninstall
+sudo apt purge amdgpu-install
+wget https://repo.radeon.com/amdgpu-install/latest/ubuntu/jammy/amdgpu-install_6.0.60000-1_all.deb
+sudo dpkg -i amdgpu-install_6.0.60000-1_all.deb
+amdgpu-install --usecase=dkms
+# 不要加其他usecase,会导致花屏
+```
+
+**静待ubuntu内核与amdgpu更新**
+
+## 通用操作
 
 https://www.amd.com/en/support/linux-drivers
 
@@ -909,6 +942,10 @@ sudo amdgpu-install
 sudo cat <<EOF | sudo tee /etc/apt/preferences.d/repo-radeon-pin-600
 Package: rocminfo
 Pin: origin *huaweicloud.com*
+Pin-Priority: -1
+
+Package: rocminfo
+Pin: origin *edu.cn*
 Pin-Priority: -1
 
 Package: *
