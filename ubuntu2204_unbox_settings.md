@@ -121,6 +121,21 @@ sudo cp *.ttf /usr/local/share/fonts/
 sudo fc-cache -f -v # 重建字体缓存
 ```
 
+
+## 移除netplan
+
+```shell
+sudo systemctl disable --now systemd-networkd.service systemd-networkd.socket networkd-dispatcher.service && sudo systemctl restart NetworkManager
+sudo apt purge netplan netplan.io -y
+sudo mv /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf  /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf_orig
+sudo touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
+sudo systemctl restart NetworkManager
+```
+
+## 恢复netplan
+
+TODO
+
 ## snap
 
 ```shell
