@@ -800,7 +800,7 @@ sudo init 3
 export LANG=C
 export LANGUAGE=C
 sudo apt update
-sudo apt install libcanberra-gtk-module cuda libcudnn* tensorrt*
+sudo apt install libcanberra-gtk-module cuda libcudnn8* tensorrt*
 ```
 
 ==step4==
