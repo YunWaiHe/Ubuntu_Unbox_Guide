@@ -737,9 +737,9 @@ geosite中可用规则 https://github.com/v2fly/domain-list-community/tree/maste
 
 如果没有AGH可以配置，DNS查询走代理需要确认proxy提供商是否屏蔽DNS请求
 
-# CUDA 11.8
+# CUDA
 
-https://docs.nvidia.com/cuda/archive/11.8.0/cuda-installation-guide-linux/index.html#ubuntu-installation
+11.8 https://docs.nvidia.com/cuda/archive/11.8.0/cuda-installation-guide-linux/index.html#ubuntu-installation
 
 ==step1==
 
@@ -747,9 +747,13 @@ https://docs.nvidia.com/cuda/archive/11.8.0/cuda-installation-guide-linux/index.
 wget https://developer.download.nvidia.com/compute/cuda/repos/ubuntu2204/x86_64/cuda-keyring_1.1-1_all.deb
 sudo dpkg -i cuda-keyring_1.1-1_all.deb
 sudo apt update
+# 中国CDN加速
+sudo sed -i 's/nvidia.com/nvidia.cn/' /etc/apt/sources.list.d/cuda-ubuntu2204-x86_64.list
 ```
 
 ==step2==
+
+cuda 11.8
 
 ```shell
 # 固定版本，以及禁止从ubuntu源安装cuda。
@@ -757,6 +761,10 @@ sudo cat <<EOF | sudo tee /etc/apt/preferences.d/cuda-pin
 # disable nvidia software from huaweiorigin
 Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
 Pin: origin *huaweicloud.com*
+Pin-Priority: -1
+
+Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
+Pin: origin *ubuntu.com*
 Pin-Priority: -1
 
 Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
@@ -773,19 +781,60 @@ Package: cuda cuda-toolkit-config-common
 Pin: version 11.8.*
 Pin-Priority: 1001
 
-# pin tensorrt's version to cuda11.8
-Package: tensorrt*
-Pin: version *+cuda11.8
-Pin-Priority: 1001
-
 # pin cudnn's version to 8.6.*-cuda11.8
-Package: libcudnn8 libcudnn8-dev libnvinfer* libnvonnxparsers* libnvparsers*
+Package: libcudnn8 libcudnn8-dev
 Pin: version 8.6.*+cuda11.8
 Pin-Priority: 1001
 
 # pin cudnn samples' version
 Package: libcudnn8-samples
 Pin: version *+cuda11.8
+Pin-Priority: 1001
+
+# pin tensorrt's version to cuda11.8
+Package: tensorrt* libnvinfer* libnvonnxparsers* libnvparsers* onnx-graphsurgeon python3-libnvinfer* uff-converter-tf
+Pin: version *+cuda11.8
+Pin-Priority: 1001
+
+EOF
+```
+
+cuda 12.1
+
+```shell
+# 固定版本，以及禁止从ubuntu源安装cuda。
+sudo cat <<EOF | sudo tee /etc/apt/preferences.d/cuda-pin
+# disable nvidia software from huaweiorigin
+Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
+Pin: origin *huaweicloud.com*
+Pin-Priority: -1
+
+Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
+Pin: origin *ubuntu.com*
+Pin-Priority: -1
+
+Package: nsight-* nvidia-* libnvidia-* xserver-xorg-video-nvidia*
+Pin: origin *edu.cn*
+Pin-Priority: -1
+
+# set label:NVIDIA CUDA with high priority
+Package: *
+Pin: release l=NVIDIA CUDA
+Pin-Priority: 600
+
+# pin cuda's version to 12.1.*
+Package: cuda cuda-toolkit-config-common
+Pin: version 12.1.*
+Pin-Priority: 1001
+
+# pin cudnn's version to cuda12.1
+Package: libcudnn8*
+Pin: version *+cuda12.1
+Pin-Priority: 1001
+
+# pin tensorrt's version to cuda12.0
+Package: tensorrt* libnvinfer* libnvonnxparsers* libnvparsers* onnx-graphsurgeon python3-libnvinfer* uff-converter-tf
+Pin: version *+cuda12.0
 Pin-Priority: 1001
 
 EOF
