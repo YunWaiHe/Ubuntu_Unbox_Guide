@@ -737,7 +737,7 @@ geosite中可用规则 https://github.com/v2fly/domain-list-community/tree/maste
 
 如果没有AGH可以配置，DNS查询走代理需要确认proxy提供商是否屏蔽DNS请求
 
-# CUDA
+# 单版本CUDA
 
 11.8 https://docs.nvidia.com/cuda/archive/11.8.0/cuda-installation-guide-linux/index.html#ubuntu-installation
 
@@ -849,7 +849,7 @@ sudo init 3
 export LANG=C
 export LANGUAGE=C
 sudo apt update
-sudo apt install libcanberra-gtk-module cuda libcudnn8* tensorrt*
+sudo apt install libcanberra-gtk-module cuda libcudnn8* tensorrt* onnx-graphsurgeon uff-converter-tf
 ```
 
 ==step4==
