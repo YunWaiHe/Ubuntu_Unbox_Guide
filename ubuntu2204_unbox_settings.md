@@ -561,6 +561,18 @@ V6NdRrZdC3ncHYyiTGGGO-lBM7Qx7NNVNTYmijllfsTWANz9ZggPP5XflrSIsT0DOgEGX9P-czWpBh55
 --- END LICENSE KEY -----
 ```
 
+## virtualbox
+
+```shell
+sudo cat <<EOF | sudo tee /etc/apt/sources.list.d/virtualbox.list
+deb [arch=amd64 signed-by=/usr/share/keyrings/oracle-virtualbox-2016.gpg] https://download.virtualbox.org/virtualbox/debian jammy contrib
+EOF
+wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --yes --output /usr/share/keyrings/oracle-virtualbox-2016.gpg --dearmor
+
+sudo apt install virtualbox-7.0
+```
+
+
 ## 其他软件
 
 ```shell
@@ -570,6 +582,9 @@ sudo apt install alacarte
 sudo apt install baobab
 # 文件hash
 sudo apt install nautilus-gtkhash
+# 远程
+sudo apt install krdc breeze-icon-theme
+sudo apt install gnome-connections
 ```
 
 ## AGH(Adguard Home)
