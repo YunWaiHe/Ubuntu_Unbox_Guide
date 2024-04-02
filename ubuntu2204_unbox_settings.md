@@ -768,6 +768,8 @@ sudo sed -i 's/nvidia.com/nvidia.cn/' /etc/apt/sources.list.d/cuda-ubuntu2204-x8
 
 ==step2==
 
+*表示通配符
+
 cuda 11.8
 
 ```shell
