@@ -796,13 +796,13 @@ Package: cuda cuda-toolkit-config-common
 Pin: version 11.8.*
 Pin-Priority: 1001
 
-# pin cudnn's version to 8.6.*-cuda11.8
-Package: libcudnn8 libcudnn8-dev
-Pin: version 8.6.*+cuda11.8
+# pin cuda driver version
+Package: cuda-drivers nvidia-settings nvidia-modprobe libxnvctrl0
+Pin: version 535.*
 Pin-Priority: 1001
 
-# pin cudnn samples' version
-Package: libcudnn8-samples
+# pin cudnn's version
+Package: libcudnn8*
 Pin: version *+cuda11.8
 Pin-Priority: 1001
 
@@ -840,6 +840,11 @@ Pin-Priority: 600
 # pin cuda's version to 12.1.*
 Package: cuda cuda-toolkit-config-common
 Pin: version 12.1.*
+Pin-Priority: 1001
+
+# pin cuda driver version to 535
+Package: cuda-drivers nvidia-settings nvidia-modprobe libxnvctrl0
+Pin: version 535.*
 Pin-Priority: 1001
 
 # pin cudnn's version to cuda12.1
