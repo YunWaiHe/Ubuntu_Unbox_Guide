@@ -882,6 +882,11 @@ sudo apt install libcanberra-gtk-module cuda libcudnn8* tensorrt* onnx-graphsurg
 
 ```nvidia-smi```测试驱动是否安装成功，
 
+Failed to initialize NVML: Insufficient Permissions 解决办法
+```shell
+sudo usermod -a -G  $(ls -l /dev/nvidia0 | awk '{print $4}') $(whoami)
+```
+
 ## cuDNN
 
 https://docs.nvidia.com/deeplearning/cudnn/install-guide/index.html#package-manager-ubuntu-install
@@ -989,29 +994,11 @@ pip install torch torchvision torchaudio --index-url https://download.pytorch.or
 
 # AMD核显驱动
 
-**可以装但没必要~~，目前支持不完善，等22.04.3再看看支持程度如何~~**
+**~~可以装但没必要，目前支持不完善，等22.04.3再看看支持程度如何~~**
 
-## 2024.01.15 临时解决
+**内核自带核显驱动，无需安装**
 
- 22.04.3 HWE 6.5.0-14内核下，
-
-使用官网https://repo.radeon.com/amdgpu-install/23.30.2/ubuntu/jammy/amdgpu-install_5.7.50702-1_all.deb安装失败，
-
-换用https://repo.radeon.com/amdgpu-install/latest/ubuntu/jammy/amdgpu-install_6.0.60000-1_all.deb，
-
-```shell
-sudo apt purge amdgpu-core amdgpu-dkms amdgpu-dkms-firmware amdgpu-lib amdgpu-lib32
-sudo amdgpu-uninstall
-sudo apt purge amdgpu-install
-wget https://repo.radeon.com/amdgpu-install/latest/ubuntu/jammy/amdgpu-install_6.0.60000-1_all.deb
-sudo dpkg -i amdgpu-install_6.0.60000-1_all.deb
-amdgpu-install --usecase=dkms
-# 不要加其他usecase,会导致花屏
-```
-
-**静待ubuntu内核与amdgpu更新**
-
-## 通用操作
+## AMD独显驱动操作
 
 https://www.amd.com/en/support/linux-drivers
 
