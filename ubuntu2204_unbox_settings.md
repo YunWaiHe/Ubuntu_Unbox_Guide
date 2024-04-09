@@ -809,8 +809,8 @@ Pin: version *+cuda11.8
 Pin-Priority: 1001
 
 # pin tensorrt's version to cuda11.8
-Package: tensorrt* libnvinfer* libnvonnxparsers* libnvparsers* onnx-graphsurgeon python3-libnvinfer* uff-converter-tf
-Pin: version *+cuda11.8
+Package: tensorrt* libnvinfer* libnvonnxparsers* libnvparsers* onnx-graphsurgeon python3-libnvinfer* uff-converter-tf graphsurgeon-tf
+Pin: version 8.*+cuda11.8
 Pin-Priority: 1001
 
 EOF
@@ -855,8 +855,8 @@ Pin: version *+cuda12.1
 Pin-Priority: 1001
 
 # pin tensorrt's version to cuda12.0
-Package: tensorrt* libnvinfer* libnvonnxparsers* libnvparsers* onnx-graphsurgeon python3-libnvinfer* uff-converter-tf
-Pin: version *+cuda12.0
+Package: tensorrt* libnvinfer* libnvonnxparsers* libnvparsers* onnx-graphsurgeon python3-libnvinfer* uff-converter-tf graphsurgeon-tf
+Pin: version 8.*+cuda12.0
 Pin-Priority: 1001
 
 EOF
