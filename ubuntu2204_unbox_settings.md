@@ -854,7 +854,11 @@ Package: libcudnn8*
 Pin: version *+cuda12.1
 Pin-Priority: 1001
 
-# pin tensorrt's version to cuda12.0
+# pin tensorrt's version 8 cuda12.0
+Package: libnvinfer-dispatch8 libnvinfer-lean8 libnvinfer-plugin8 libnvinfer-vc-plugin8 libnvinfer8 libnvonnxparsers8
+Pin: version 8.*+cuda12.0
+Pin-Priority: 1002
+
 Package: tensorrt* libnvinfer* libnvonnxparsers* libnvparsers* onnx-graphsurgeon python3-libnvinfer* uff-converter-tf graphsurgeon-tf
 Pin: version 8.*+cuda12.0
 Pin-Priority: 1001
@@ -871,7 +875,7 @@ sudo init 3
 export LANG=C
 export LANGUAGE=C
 sudo apt update
-sudo apt install libcanberra-gtk-module cuda libcudnn8* tensorrt* onnx-graphsurgeon uff-converter-tf
+sudo apt install libcanberra-gtk-module cuda libcudnn8* tensorrt* onnx-graphsurgeon uff-converter-tf graphsurgeon-tf
 ```
 
 ==step4==
