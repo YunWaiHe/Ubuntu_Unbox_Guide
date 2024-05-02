@@ -106,7 +106,12 @@ wget -q https://raw.githubusercontent.com/PRATAP-KUMAR/ubuntu-gdm-set-background
 wget https://512pixels.net/downloads/macos-wallpapers-6k/12-Dark.jpg
 sudo cp 12-Dark.jpg /usr/share/backgrounds/
 sudo chmod 644 /usr/share/backgrounds/12-Dark.jpg
-sudo ./ubuntu-gdm-set-background --image /usr/share/backgrounds/12-Dark.jpg
+
+wget https://512pixels.net/downloads/macos-wallpapers-6k/12-Light.jpg
+sudo cp 12-Light.jpg /usr/share/backgrounds/
+sudo chmod 644 /usr/share/backgrounds/12-Light.jpg
+
+sudo ./ubuntu-gdm-set-background --image /usr/share/backgrounds/12-Light.jpg
 # press ctrl+alt+f1 to check 
 ```
 
@@ -125,10 +130,15 @@ sudo fc-cache -f -v # 重建字体缓存
 ## 移除netplan
 
 ```shell
-sudo systemctl disable --now systemd-networkd.service systemd-networkd.socket networkd-dispatcher.service && sudo systemctl restart NetworkManager
+sudo systemctl disable --now systemd-networkd.service systemd-networkd.socket networkd-dispatcher.service && sudo systemctl restart NetworkManager 	        
+sudo cp /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf  /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf_orig
+
+cat << 'EOF' | sudo tee /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
+[keyfile]
+unmanaged-devices=*,except:type:wifi,except:type:gsm,except:type:cdma
+EOF
+
 sudo apt purge netplan netplan.io -y
-sudo mv /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf  /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf_orig
-sudo touch /usr/lib/NetworkManager/conf.d/10-globally-managed-devices.conf
 sudo systemctl restart NetworkManager
 ```
 
@@ -166,7 +176,7 @@ snap remove --purge snapd
 sudo apt purge snapd
 sudo apt-mark hold snapd
 
-sudo cat <<EOF | sudo tee /etc/apt/preferences.d/nosnap.pref
+cat << 'EOF' | sudo tee /etc/apt/preferences.d/nosnap.pref
 Package: snapd
 Pin: release a=*
 Pin-Priority: -10
@@ -186,9 +196,8 @@ sudo rm -r /sys/fs/bpf/snap
 
 ```shell
 sudo sed -r -i.orig 's/#?DNSStubListener=yes/DNSStubListener=no/g' /etc/systemd/resolved.conf
-sudo mv /etc/resolv.conf /etc/resolv.conf.backup
-sudo ln -s /run/systemd/resolve/resolv.conf /etc/resolv.conf
 sudo systemctl restart systemd-resolved
+resolvectl flush-caches
 ```
 
 ## NTP时间同步
@@ -196,8 +205,11 @@ sudo systemctl restart systemd-resolved
 ```shell
 sudo mkdir /etc/systemd/timesyncd.conf.d
 sudo touch /etc/systemd/timesyncd.conf.d/public_ntp.conf
-echo -e "[Time]\nNTP=ntp.ntsc.ac.cn\nFallbackNTP=ntp6.aliyun.com" | sudo tee /etc/systemd/timesyncd.conf.d/public_ntp.conf
-
+cat << 'EOF' | sudo tee /etc/systemd/timesyncd.conf.d/public_ntp.conf
+[Time]
+NTP=ntp.ntsc.ac.cn
+FallbackNTP=ntp6.aliyun.com
+EOF
 sudo systemctl restart systemd-timesyncd.service
 sudo systemctl status systemd-timesyncd.service
 ```
@@ -243,12 +255,13 @@ sudo echo 'alias proxy="export http_proxy=http://127.0.0.1:10809;export https_pr
 sudo echo 'alias unproxy="unset http_proxy;unset https_proxy"' | sudo tee -a /etc/bash.bashrc
 
 sudo echo 'alias proxy="export http_proxy=http://127.0.0.1:10809;export https_proxy=http://127.0.0.1:10809"' | sudo tee -a /etc/zsh/zshrc
-
 sudo echo 'alias unproxy="unset http_proxy;unset https_proxy"' | sudo tee -a /etc/zsh/zshrc
+
 sh -c "$(wget https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O -)"
 git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 git clone https://github.com/zsh-users/zsh-syntax-highlighting.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-syntax-highlighting
 git clone https://github.com/chrissicool/zsh-256color ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-256color
+git clone https://github.com/conda-incubator/conda-zsh-completion.git ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/conda-zsh-completion
 ```
 
 .zshrc配置
@@ -316,7 +329,7 @@ bindkey -s "^[Oo" "/"
 ```shell
 # 'EOF'表示不进行转义
 # 普通用户
-cat <<'EOF' | tee $ZSH_CUSTOM/themes/my_maran.zsh-theme
+cat << 'EOF' | tee $ZSH_CUSTOM/themes/my_maran.zsh-theme
 PROMPT='%{$fg[cyan]%}%n%{%f%}@%{$fg[yellow]%}%M:%{$fg[magenta]%}%~ $(git_prompt_info)$(git_prompt_status)%{%f%u%}%(?,,%{$fg[red]%})$%(?,,%{%f%}) '
 RPROMPT='%{$fg[blue]%}%*%{$fg[default]%}'
 
@@ -338,7 +351,7 @@ ZSH_THEME_GIT_PROMPT_STASHED="%{$fg_bold[blue]%}-STASHED"
 EOF
 # root用户
 sudo su
-cat <<'EOF' | tee $ZSH_CUSTOM/themes/my_maran.zsh-theme
+cat << 'EOF' | tee $ZSH_CUSTOM/themes/my_maran.zsh-theme
 PROMPT='%{$fg_bold[white]$bg[red]%}%n%{%f%k%}@%{$fg[blue]%}%M:%{$fg[magenta]%}%~ $(git_prompt_info)$(git_prompt_status)%{%f%u%}%(?,,%{$fg[red]%})#%(?,,%{%f%b%}) '
 RPROMPT='%{$fg[cyan]%}%*%{$fg[default]%}'
 
@@ -374,7 +387,7 @@ dconf load /org/gnome/terminal/ < gnome_terminal_settings_backup.txt
 sudo apt install dconf-editor
 
 # 示例配置
-cat <<'EOF'|tee gnome_terminal_dracula_theme.txt
+cat << 'EOF'| tee gnome_terminal_dracula_theme.txt
 [/]
 background-color='#282A36'
 bold-color='#6E46A4'
@@ -388,6 +401,8 @@ use-custom-command=true
 use-theme-colors=true
 visible-name='Dracula'
 EOF
+# 新建配置，去dconf-editor
+dconf load /org/gnome/terminal/legacy/profiles:/:7512993d-2577-4f9b-a035-2959d776c1dd/ < gnome_terminal_dracula_theme.txt
 
 dconf write /org/gnome/terminal/legacy/profiles:/list "['b1dcc9dd-5262-4d8d-a863-c897e6d979b9','7512993d-2577-4f9b-a035-2959d776c1dd']"
 
@@ -457,7 +472,7 @@ body {
 ## Sogou Pinyin
 
 ```shell
-sudo cat <<EOF | sudo tee /etc/environment.d/90sogou.conf
+sudo cat << 'EOF' | sudo tee /etc/environment.d/90sogou.conf
 GTK_IM_MODULE=fcitx
 QT_IM_MODULE=fcitx
 XMODIFIERS="@im=fcitx"
@@ -497,7 +512,7 @@ https://github.com/flameshot-org/flameshot
 ## Iris 护眼软件
 
 ```shell
-下载地址 iristech.co
+下载地址 https://iristech.co/download-linux-x64
 # 下载、解压、移动至/opt,终端运行，补全缺失lib
 # 修改桌面图标配置 ~/.local/share/applications/Iris.desktop 如下
 [Desktop Entry]
@@ -571,7 +586,6 @@ wget -O- https://www.virtualbox.org/download/oracle_vbox_2016.asc | sudo gpg --y
 
 sudo apt install virtualbox-7.0
 ```
-
 
 ## 其他软件
 
@@ -1031,3 +1045,4 @@ Pin-Priority: 600
 EOF
 ```
 
+​	
