@@ -2,7 +2,10 @@
 Ubuntu 开箱设置  
 Ubuntu unbox settings
 
-## [ubuntu设置文档](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/ubuntu2204_unbox_settings.md)
+## [ubuntu24.04开箱文档](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/ubuntu2404_unbox_settings.md)
+24.04设置
+
+## [ubuntu22.04开箱文档](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/ubuntu2204_unbox_settings.md)
 ubuntu22.04设置，其他版本酌情修改  
 This doc is intended for Ubuntu 22.04 version only. If you are using a different version, please modify it accordingly.
 
