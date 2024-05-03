@@ -498,12 +498,8 @@ EOF
 ### zerotier
 
 ```shell
+# 2024.05.03 supported
 curl -s https://install.zerotier.com | sudo bash
-# no need to install libssl1.1
-# u'd better wait for official support
-cat <<'EOF' | sudo tee /etc/apt/sources.list.d/zerotier.list
-deb https://download.zerotier.com/debian/mantic mantic 
-EOF
 ```
 
 ### v2raya
