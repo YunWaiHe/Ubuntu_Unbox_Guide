@@ -47,6 +47,19 @@ ln -s /mnt/win_d_600G/Folder/Videos/ /home/user1/Videos
 LC_ALL=C xdg-user-dirs-update --force && sudo reboot
 ```
 
+## apparmor
+
+解决包括但不限于微信没法用、桌面缩略图不显示等诸多问题
+
+[https://bugs.launchpad.net/ubuntu/+source/nautilus/+bug/2047256](https://bugs.launchpad.net/ubuntu/+source/nautilus/+bug/2047256)
+
+https://bugs.launchpad.net/ubuntu/+source/nautilus/+bug/2054183
+
+```shell
+echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee /etc/sysctl.d/30-apparmor.conf
+sudo sysctl -p
+```
+
 ## Others
 
 ```shell
