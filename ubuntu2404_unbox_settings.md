@@ -60,6 +60,14 @@ echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee /etc/sysctl.d/3
 sudo sysctl -p
 ```
 
+## AppImages
+
+AppImages包依赖
+
+```shell
+sudo apt install libfuse2t64
+```
+
 ## Others
 
 ```shell
