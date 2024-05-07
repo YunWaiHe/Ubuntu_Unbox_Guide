@@ -13,13 +13,19 @@ sudo vim /etc/gdm3/custom.conf
 # apt source
 cat <<'EOF' | sudo tee /etc/apt/sources.list.d/ubuntu.sources
 Types: deb deb-src
-URIs: https://mirrors.zju.edu.cn/ubuntu/
+URIs: http://mirrors.zju.edu.cn/ubuntu/
 Suites: noble noble-updates noble-backports
 Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
 Types: deb deb-src
-URIs: https://mirrors.zju.edu.cn/ubuntu/
+URIs: http://security.ubuntu.com/ubuntu/
+Suites: noble-security
+Components: main restricted universe multiverse
+Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
+
+Types: deb deb-src
+URIs: http://ftp.udx.icscoe.jp/Linux/ubuntu/
 Suites: noble-security
 Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
