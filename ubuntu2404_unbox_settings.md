@@ -64,6 +64,7 @@ https://bugs.launchpad.net/ubuntu/+source/nautilus/+bug/2054183
 ```shell
 echo "kernel.apparmor_restrict_unprivileged_userns=0" | sudo tee /etc/sysctl.d/30-apparmor.conf
 sudo sysctl -p
+sudo deb-systemd-invoke restart procps.service
 ```
 
 ## AppImages
