@@ -550,7 +550,7 @@ sudo systemctl start v2raya
 
 ### ubuntu cleaner
 
-**2024.05.01 NOT SUPPORTED, JUST WAIT**
+**2024.05.07 SUPPORTED**
 
 ```shell
 sudo add-apt-repository ppa:gerardpuig/ppa
