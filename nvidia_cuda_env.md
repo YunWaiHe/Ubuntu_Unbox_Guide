@@ -76,3 +76,6 @@ make clean && make
 # If cuDNN is properly installed and running on your Linux system, you will see "Test passed!"
 ```
 
+Or use scripts
+
+[https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/cudnn_install.sh](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/cudnn_install.sh)

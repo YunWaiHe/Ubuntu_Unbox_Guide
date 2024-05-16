@@ -13,6 +13,8 @@ This doc is intended for Ubuntu 22.04 version only. If you are using a different
 
 cuda环境安装
 
+## [cudnn安装脚本](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/cudnn_install.sh)
+
 ## [EasyConnect安装](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/install_EasyConnect_Ubuntu22.04_x64.sh)
 - ✅ 打开界面(Usability of the GUI)
 - ❓ 正常连接(Connectivity)
