@@ -609,3 +609,26 @@ sudo apt install krdc gtkhash alacarte bleachbit flameshot pv pulseaudio pavucon
 sudo mokutil --import /usr/share/nvidia/nvidia-modsign-crt-133DA1C2.der
 ```
 
+# Dev ToolChains
+
+## llvm
+
+```shell
+wget https://apt.llvm.org/llvm.sh
+chmod +x llvm.sh
+sudo ./llvm.sh <version number> # 17 or 18 is supported 2024.05.16
+```
+
+apt warns:
+
+```shell
+# modify /etc/apt/sources.list.d/archive_uri-http_apt_llvm_org_noble_-noble.list as bellow:
+deb [arch=amd64] http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main
+deb-src [arch=amd64] http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main
+```
+
+## cmake
+
+**APT SOURCE 2024.05.16 NOT SUPPORTED**
+
+**Binary file is OK**
