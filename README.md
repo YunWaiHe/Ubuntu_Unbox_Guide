@@ -9,6 +9,10 @@ Ubuntu unbox settings
 ubuntu22.04设置，其他版本酌情修改  
 This doc is intended for Ubuntu 22.04 version only. If you are using a different version, please modify it accordingly.
 
+## [cuda环境配置](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/nvidia_cuda_env.md)
+
+cuda环境安装
+
 ## [EasyConnect安装](https://github.com/YunWaiHe/Ubuntu_Unbox_Guide/blob/main/install_EasyConnect_Ubuntu22.04_x64.sh)
 - ✅ 打开界面(Usability of the GUI)
 - ❓ 正常连接(Connectivity)
