@@ -159,6 +159,21 @@ sudo systemctl restart systemd-resolved
 resolvectl flush-caches
 ```
 
+## APT代理配置
+
+```shell
+cat << 'EOF' | sudo tee /etc/apt/apt.conf.d/99proxy.conf
+Acquire::http::Proxy "http://127.0.0.1:10809";
+Acquire::https::Proxy "http://127.0.0.1:10809";
+Acquire::http::Proxy {
+    mirrors.zju.edu.cn "DIRECT";
+}
+Acquire::https::Proxy {
+    developer.download.nvidia.cn "DIRECT";
+}
+EOF
+```
+
 
 
 # 磁盘
