@@ -354,6 +354,7 @@ alias la='ls -A'
 alias l='ls -CF'
 alias x11_as_root='sudo xauth add $(xauth list $DISPLAY)'
 setopt nonomatch
+setopt HIST_IGNORE_ALL_DUPS
 
 # XShell Key
 # Home
