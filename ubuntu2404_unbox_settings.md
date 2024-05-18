@@ -189,8 +189,11 @@ sudo mkdir /mnt/win_d_600G
 sudo mkdir /mnt/win_e_1D4T
 # 之后在/etc/fstab 中新加下面这一行，按实际情况修改，UUID改为对应的，挂载点选择/mnt/dir_name，类型ntfs-3g便于设置权限，后面的options意思是用户可以挂载，win文件夹名称合法性检查，属于当前用户，文件夹755，文件644，不备份，在根文件系统之后检查
 cat << 'EOF' | sudo tee -a /etc/fstab
-UUID=E892549DFD9D9562   /mnt/win_d_600G     ntfs-3g     user,exec,dev,suid,windows_names,uid=1000,gid=1000,dmask=0022,fmask=0133      0       2
-UUID=4A71C1335FE7A391   /mnt/win_e_1D4T     ntfs-3g     user,exec,dev,suid,windows_names,uid=1000,gid=1000,dmask=0022,fmask=0133      0       2
+# win10 D: E:
+UUID=E892549DFD9D9562 /mnt/win_d_600G ntfs-3g user,exec,dev,suid,windows_names,uid=1000,gid=1000,dmask=0022,fmask=0133 0 2
+UUID=4A71C1335FE7A391 /mnt/win_e_1D4T ntfs-3g user,exec,dev,suid,windows_names,uid=1000,gid=1000,dmask=0022,fmask=0133 0 2
+# HDD
+UUID=bc6d7035-eec7-45bc-af48-d8d927cddb26 /mnt/HDD3D6T ext4 defaults 0 2
 EOF
 
 sudo systemctl daemon-reload
@@ -461,7 +464,7 @@ apt policy firefox chromium-browser thunderbird
 ## remove
 
 ```shell
-sudo apt purge transmission* gnome-snapshot* remmina*
+sudo apt purge transmission* gnome-snapshot* remmina* openvpn* sssd*
 sudo apt autopurge
 ```
 

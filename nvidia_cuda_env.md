@@ -15,6 +15,18 @@
 # after execute .run file
 sudo mokutil --import /usr/share/nvidia/nvidia-modsign-crt-12312312.der
 reboot
+
+# if Unknown Display
+# https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2060268
+sudo vim /etc/default/grub
+# add initcall_blacklist=simpledrm_platform_driver_init
+GRUB_CMDLINE_LINUX_DEFAULT="quiet splash initcall_blacklist=simpledrm_platform_driver_init"
+sudo update-grub
+
+# if not exists,add manually
+cat << 'EOF' | sudo tee /etc/modprobe.d/nvidia-graphics-drivers-kms.conf                                                               
+options nvidia-drm modeset=1
+EOF
 ```
 
 ```shell
