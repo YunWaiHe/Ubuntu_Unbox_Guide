@@ -3,24 +3,24 @@
 ## APT源
 
 ```shell
-deb https://repo.huaweicloud.com/ubuntu/ jammy main restricted universe multiverse
-deb-src https://repo.huaweicloud.com/ubuntu/ jammy main restricted universe multiverse
-deb https://repo.huaweicloud.com/ubuntu/ jammy-updates main restricted universe multiverse
-deb-src https://repo.huaweicloud.com/ubuntu/ jammy-updates main restricted universe multiverse
-deb https://repo.huaweicloud.com/ubuntu/ jammy-backports main restricted universe multiverse
-deb-src https://repo.huaweicloud.com/ubuntu/ jammy-backports main restricted universe multiverse
-deb https://repo.huaweicloud.com/ubuntu/ jammy-security main restricted universe multiverse
-deb-src https://repo.huaweicloud.com/ubuntu/ jammy-security main restricted universe multiverse
+deb http://repo.xxx.com/ubuntu/ jammy main restricted universe multiverse
+deb-src http://repo.xxx.com/ubuntu/ jammy main restricted universe multiverse
+deb http://repo.xxx.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb-src http://repo.xxx.com/ubuntu/ jammy-updates main restricted universe multiverse
+deb http://repo.xxx.com/ubuntu/ jammy-backports main restricted universe multiverse
+deb-src http://repo.xxx.com/ubuntu/ jammy-backports main restricted universe multiverse
+deb http://repo.xxx.com/ubuntu/ jammy-security main restricted universe multiverse
+deb-src http://repo.xxx.com/ubuntu/ jammy-security main restricted universe multiverse
 
 # 校园网用户
-deb https://mirrors.zju.edu.cn/ubuntu/ jammy main restricted universe multiverse
-deb-src https://mirrors.zju.edu.cn/ubuntu/ jammy main restricted universe multiverse
-deb https://mirrors.zju.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
-deb-src https://mirrors.zju.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
-deb https://mirrors.zju.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-deb-src https://mirrors.zju.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
-deb https://mirrors.zju.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
-deb-src https://mirrors.zju.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+deb http://mirrors.cernet.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb-src http://mirrors.cernet.edu.cn/ubuntu/ jammy main restricted universe multiverse
+deb http://mirrors.cernet.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb-src http://mirrors.cernet.edu.cn/ubuntu/ jammy-updates main restricted universe multiverse
+deb http://mirrors.cernet.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb-src http://mirrors.cernet.edu.cn/ubuntu/ jammy-backports main restricted universe multiverse
+deb http://mirrors.cernet.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
+deb-src http://mirrors.cernet.edu.cn/ubuntu/ jammy-security main restricted universe multiverse
 ```
 
 ## linux内核

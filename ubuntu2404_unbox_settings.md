@@ -12,8 +12,8 @@ sudo apt install vim curl git htop cmake build-essential python3-dev python3-pip
 sudo vim /etc/gdm3/custom.conf
 # apt source
 cat <<'EOF' | sudo tee /etc/apt/sources.list.d/ubuntu.sources
-Types: deb deb-src
-URIs: http://mirrors.zju.edu.cn/ubuntu/
+Types: deb
+URIs: https://mirrors.cernet.edu.cn/ubuntu
 Suites: noble noble-updates noble-backports
 Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
@@ -26,7 +26,7 @@ Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 
 Types: deb deb-src
 URIs: http://ftp.udx.icscoe.jp/Linux/ubuntu/
-Suites: noble-security
+Suites: noble noble-updates noble-backports noble-security
 Components: main restricted universe multiverse
 Signed-By: /usr/share/keyrings/ubuntu-archive-keyring.gpg
 EOF
