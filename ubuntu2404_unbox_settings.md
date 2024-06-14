@@ -53,7 +53,9 @@ ln -s /mnt/win_d_600G/Folder/Videos/ /home/user1/Videos
 LC_ALL=C xdg-user-dirs-update --force && sudo reboot
 ```
 
-## apparmor
+## apparmor (fixed)
+
+<font color=red>FIXED, 无需配置</font>
 
 解决包括但不限于微信没法用、桌面缩略图不显示等诸多问题
 
