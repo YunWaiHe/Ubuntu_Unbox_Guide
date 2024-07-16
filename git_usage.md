@@ -17,7 +17,7 @@ git config --global credential.credentialStore secretservice # export GCM_CREDEN
 
 # 不同项目下可能使用不同的用户名
 cd yourproject
-git config git config credential.username yourname
+git config credential.username yourname
 ```
 
 ### 方法2
