@@ -676,7 +676,22 @@ deb-src [arch=amd64] http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main
 
 ## cmake
 
-**APT SOURCE 2024.05.16 NOT SUPPORTED**
+~~**APT SOURCE 2024.05.16 NOT SUPPORTED**~~
+
+2024.08.05 https://apt.kitware.com/ supported
+
+TL;DR
+
+```shell
+test -f /usr/share/doc/kitware-archive-keyring/copyright ||
+wget -O - https://apt.kitware.com/keys/kitware-archive-latest.asc 2>/dev/null | gpg --dearmor - | sudo tee /usr/share/keyrings/kitware-archive-keyring.gpg >/dev/null
+
+echo 'deb [signed-by=/usr/share/keyrings/kitware-archive-keyring.gpg] https://apt.kitware.com/ubuntu/ noble main' | sudo tee /etc/apt/sources.list.d/kitware.list >/dev/null
+
+sudo apt-get update
+
+sudo apt-get install kitware-archive-keyring
+```
 
 **Binary file is OK**
 
