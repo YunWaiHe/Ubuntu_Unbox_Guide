@@ -218,6 +218,18 @@ cd gdm-extension
 sudo make install
 ```
 
+gdm-settings 删除后残留问题，
+
+```shell
+# 删除local gschemas
+sudo rm /usr/local/share/glib-2.0/schemas/gschemas.compiled
+# 重新生成
+sudo glib-compile-schemas /usr/share/glib-2.0/schemas
+# 打开dconf-editor验证
+```
+
+可能的原因：dconf-editor读取时，存在优先级，而gdm-settings在local创建了gschemas，卸载gdm-settings时没有删除掉这项内容，导致donf-editor读取的旧的数据。
+
 ## Font
 
 ```shell
@@ -630,6 +642,20 @@ sudo apt install krdc gtkhash alacarte bleachbit flameshot pv pulseaudio pavucon
 sudo mokutil --import /usr/share/nvidia/nvidia-modsign-crt-133DA1C2.der
 ```
 
+
+
+使用显示器连接独显，出现未知的显示器。
+
+https://bugs.launchpad.net/ubuntu/+source/linux/+bug/2060268
+
+```shell
+cat <<'EOF' |sudo tee -a /usr/lib/udev/rules.d/71-nvidia.rules
+ACTION=="add", SUBSYSTEM=="module", KERNEL=="nvidia_drm", TEST=="/sys/devices/platform/simple-framebuffer.0/drm/card0", RUN+="/bin/rm /dev/dri/card0"
+EOF
+```
+
+
+
 # Dev ToolChains
 
 ## llvm
@@ -653,3 +679,31 @@ deb-src [arch=amd64] http://apt.llvm.org/noble/ llvm-toolchain-noble-18 main
 **APT SOURCE 2024.05.16 NOT SUPPORTED**
 
 **Binary file is OK**
+
+# dbg-sym
+
+2024.08.05
+Package from noble-security suite can not be found here but at launchpad.
+
+Someone has found this question but no response.
+
+https://bugs.launchpad.net/ubuntu/+source/openssh/+bug/2075996
+
+As described in Ubuntu doc, it's recommend to not use ddebs but debuginfod.
+
+https://ubuntu.com/server/docs/about-debuginfod
+
+debuginfod also use indexes from ddebs.ubuntu.com.
+
+```shell
+sudo apt install ubuntu-dbgsym-keyring
+
+cat << 'EOF' | sudo tee -a /etc/apt/sources.list.d/ddebs.list
+deb http://ddebs.ubuntu.com $(lsb_release -cs) main restricted universe multiverse
+deb http://ddebs.ubuntu.com $(lsb_release -cs)-updates main restricted universe multiverse
+EOF
+
+```
+
+
+
