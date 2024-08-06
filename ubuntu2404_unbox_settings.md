@@ -342,20 +342,24 @@ EOF
 .zshrc
 
 ```shell
-# 未列出的按需配置
+export PATH=$HOME/.local/bin:$PATH
+export ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="my_maran"
+
 plugins=(git
 sudo
+history
 colored-man-pages
 command-not-found
 virtualenvwrapper
 zsh-256color
 zsh-autosuggestions
 zsh-syntax-highlighting
+conda-zsh-completion
 )
 
 export ZSH_COMPDUMP=$ZSH/cache/.zcompdump-$HOST
-autoload -Uz compinit && compinit
-zstyle ':completion:*' rehash true
+source $ZSH/oh-my-zsh.sh
 
 alias ls='ls --color=auto'
 alias dir='dir --color=auto'
@@ -366,38 +370,76 @@ alias egrep='egrep --color=auto'
 alias ll='ls -alF'
 alias la='ls -A'
 alias l='ls -CF'
+
 alias x11_as_root='sudo xauth add $(xauth list $DISPLAY)'
+
 setopt nonomatch
-setopt HIST_IGNORE_ALL_DUPS
 
-# XShell Key
-# Home
-bindkey '\e[1~' beginning-of-line
-# End
-bindkey '\e[4~' end-of-line
+# completion rehash
+autoload -Uz compinit && compinit
+zstyle ':completion:*' rehash true
 
-# Keypad
-# 0 . Enter
-bindkey -s "^[Op" "0"
-bindkey -s "^[Ol" "."
-bindkey -s "^[OM" "^M"
-# 1 2 3
-bindkey -s "^[Oq" "1"
-bindkey -s "^[Or" "2"
-bindkey -s "^[Os" "3"
-# 4 5 6
-bindkey -s "^[Ot" "4"
-bindkey -s "^[Ou" "5"
-bindkey -s "^[Ov" "6"
-# 7 8 9
-bindkey -s "^[Ow" "7"
-bindkey -s "^[Ox" "8"
-bindkey -s "^[Oy" "9"
-# + -  * /
-bindkey -s "^[Ok" "+"
-bindkey -s "^[Om" "-"
-bindkey -s "^[Oj" "*"
-bindkey -s "^[Oo" "/"
+# zsh history behavior
+setopt BANG_HIST                # Treat the '!' character specially during expansion.
+setopt INC_APPEND_HISTORY       # Write to the history file immediately, not when the shell exits.
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire duplicate entries first when trimming history.
+setopt HIST_IGNORE_DUPS         # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS     # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_FIND_NO_DUPS        # Do not display a line previously found.
+setopt HIST_IGNORE_SPACE        # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS        # Don't write duplicate entries in the history file.
+setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY              # Don't execute immediately upon history expansion.
+unsetopt SHARE_HISTORY          # DO NOT Share history between all sessions.
+unsetopt EXTENDED_HISTORY       # DO NOT Write the history file in the ":start:elapsed;command" format.
+zshaddhistory() { 
+  local cmd="${${(z)1}[1]}"
+  if [[ "$cmd" == "sudo" ]]; then
+    cmd="${${(z)1}[2]}"
+  fi
+  whence $cmd >| /dev/null || return 1
+}
+
+# Xshell key
+bindkey '\e[1~' beginning-of-line   # Home
+bindkey '\e[4~' end-of-line         # End
+bindkey -s "^[Op" "0"   # 0
+bindkey -s "^[Ol" "."   # .
+bindkey -s "^[OM" "^M"  # Enter
+bindkey -s "^[Oq" "1"   # 1
+bindkey -s "^[Or" "2"   # 2
+bindkey -s "^[Os" "3"   # 3
+bindkey -s "^[Ot" "4"   # 4
+bindkey -s "^[Ou" "5"   # 5
+bindkey -s "^[Ov" "6"   # 6
+bindkey -s "^[Ow" "7"   # 7
+bindkey -s "^[Ox" "8"   # 8
+bindkey -s "^[Oy" "9"   # 9
+bindkey -s "^[Ok" "+"   # +
+bindkey -s "^[Om" "-"   # -
+bindkey -s "^[Oj" "*"   # *
+bindkey -s "^[Oo" "/"   # /
+```
+
+Caution:
+
+**For root, it's strongly recommended that record all commands to history for security audit.**
+
+```shell
+# History behavior
+setopt BANG_HIST                # Treat the '!' character specially during expansion.
+setopt INC_APPEND_HISTORY       # Write to the history file immediately, not when the shell exits.
+setopt HIST_EXPIRE_DUPS_FIRST   # Expire duplicate entries first when trimming history.
+setopt HIST_FIND_NO_DUPS        # Do not display a line previously found.
+setopt HIST_REDUCE_BLANKS       # Remove superfluous blanks before recording entry.
+setopt HIST_VERIFY              # Don't execute immediately upon history expansion.
+# espically for root
+setopt EXTENDED_HISTORY         # Write the history file in the ":start:elapsed;command" format.
+unsetopt HIST_IGNORE_DUPS       # record an entry that was just recorded again.
+unsetopt HIST_IGNORE_ALL_DUPS   # DO NOT Delete old recorded entry if new entry is a duplicate.
+unsetopt HIST_IGNORE_SPACE      # record an entry starting with a space.
+unsetopt HIST_SAVE_NO_DUPS      # write duplicate entries in the history file.
+unsetopt SHARE_HISTORY          # DO NOT Share history between all sessions.
 ```
 
 
